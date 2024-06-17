@@ -37,20 +37,23 @@ void enviarDatos(const uint8_t *mac_addr, esp_now_send_status_t status) {
      Serial1.println("Fallo el envio");
   }
 }
-void llegoDato(const uint8_t * mac, const uint8_t *incomingData, int len) {
+void llegoDato(const uint8_t * mac, const uint8_t *incomingData, int len) 
+{
   memcpy(&datosDeEntrada, incomingData, sizeof(datosDeEntrada));
   digitalWrite(2,HIGH);
   delay(500);
   digitalWrite(2,LOW);
 }
 void enviarA(int);
-void setup() {
+void setup() 
+{
   pinMode(15,INPUT_PULLDOWN);
   pinMode(2,OUTPUT);
   Serial.begin(115200);
   WiFi.mode(WIFI_STA);   // se selecciona modo estación
   // Inicializa ESP-NOW
-  if (esp_now_init() != ESP_OK) {
+  if (esp_now_init() != ESP_OK) 
+  {
     Serial.println("Error al inicializar ESP-NOW");
     return;
   }
