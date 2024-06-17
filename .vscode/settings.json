@@ -1,0 +1,6 @@
+{
+    "powermode.enabled": true,
+    "powermode.explosions.explosionOrder": "random",
+    "powermode.explosions.enabled": true,
+    "powermode.combo.counterEnabled": "hide"
+}
