@@ -66,17 +66,20 @@ void setup()
   peerInfo.encrypt = false;
   //anadiendo los peers
   memcpy(peerInfo.peer_addr, direccionMac1, 6);
-  if (esp_now_add_peer(&peerInfo) != ESP_OK){
+  if (esp_now_add_peer(&peerInfo) != ESP_OK)
+  {
     Serial.println("Failed to add peer 1");
     return;
   }
   memcpy(peerInfo.peer_addr, direccionMac2, 6);
-  if (esp_now_add_peer(&peerInfo) != ESP_OK){
+  if (esp_now_add_peer(&peerInfo) != ESP_OK)
+  {
     Serial.println("Failed to add peer 2");
     return;
   }
   memcpy(peerInfo.peer_addr, direccionMac3, 6);
-  if (esp_now_add_peer(&peerInfo) != ESP_OK){
+  if (esp_now_add_peer(&peerInfo) != ESP_OK)
+  {
     Serial.println("Failed to add peer 3");
     return;
   }
