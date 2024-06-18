@@ -5,6 +5,17 @@
 bool Led1,Led2,Led3,Led4=false;
 float temperatura;
 int humedad;
+
+//* Pines 
+#define botonRojo     13
+#define botonAmarillo 27
+#define botonAzul     25
+#define botonNegro    23
+#define ledRojo       15
+#define ledAmarillo   4
+#define ledAzul       5
+#define ledBlanco     18 
+
 //direcciones
 uint8_t direccionMac1[] = {0xC8,0x2E,0x18,0x22,0x99,0x20};
 uint8_t direccionMac2[] = {0xC8,0x2E,0x18,0x24,0x89,0x10};
@@ -16,7 +27,8 @@ typedef struct estructuraDelMensaje {
   bool Led1;
   bool Led2;
   bool Led3;
-  bool Led4;
+  bool Led4; //no me dieron mucha info
+  // pero domotica no les desagrado mucho
   float temperatura;
   int humedad;
 } estructuraDelMensaje;
@@ -47,8 +59,14 @@ void llegoDato(const uint8_t * mac, const uint8_t *incomingData, int len)
 void enviarA(int);
 void setup() 
 {
-  pinMode(15,INPUT_PULLDOWN);
-  pinMode(2,OUTPUT);
+  pinMode(botonRojo,INPUT_PULLDOWN);
+  pinMode(botonAmarillo,INPUT_PULLDOWN);
+  pinMode(botonAzul,INPUT_PULLDOWN);
+  pinMode(botonNegro,INPUT_PULLDOWN);
+  pinMode(ledRojo,OUTPUT);
+  pinMode(ledAmarillo,OUTPUT);
+  pinMode(ledAzul,OUTPUT);
+  pinMode(ledBlanco,OUTPUT);
   Serial.begin(115200);
   WiFi.mode(WIFI_STA);   // se selecciona modo estación
   // Inicializa ESP-NOW
@@ -91,10 +109,27 @@ void setup()
   
 }
 void loop() {
-  if (digitalRead(15)==1)
+  if (botonRojo)
   {
+    Led1= !Led1;
     enviarA(4);
   }
+  if (botonAmarillo)
+  {
+    Led2= !Led2;
+    enviarA(4);
+  }
+  if (botonAzul)
+  {
+    Led3= !Led3;
+    enviarA(4);
+  }
+  if (botonNegro)
+  {
+    Led4= !Led4;
+    enviarA(5);
+  }
+
 }
 void enviarA(int numero)
 {
