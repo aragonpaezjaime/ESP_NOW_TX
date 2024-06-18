@@ -49,6 +49,7 @@ void enviarDatos(const uint8_t *mac_addr, esp_now_send_status_t status) {
      Serial1.println("Fallo el envio");
   }
 }
+// Esta función es llamada cuando llega un dato
 void llegoDato(const uint8_t * mac, const uint8_t *incomingData, int len) 
 {
   memcpy(&datosDeEntrada, incomingData, sizeof(datosDeEntrada));
@@ -75,14 +76,14 @@ void setup()
     Serial.println("Error al inicializar ESP-NOW");
     return;
   }
-  // Funcion que se ejecuta al enviar datos
+  //* Funcion que se ejecuta al enviar datos
   esp_now_register_send_cb(enviarDatos);
-  // Funcion que se ejecuta al recibir datos
+  //* Funcion que se ejecuta al recibir datos
   esp_now_register_recv_cb(llegoDato);
-  //Configurando canales y encriptacion 
+  //* Configurando canales y encriptacion 
   peerInfo.channel = 0;  
   peerInfo.encrypt = false;
-  //anadiendo los peers
+  //* anadiendo los peers
   memcpy(peerInfo.peer_addr, direccionMac1, 6);
   if (esp_now_add_peer(&peerInfo) != ESP_OK)
   {
@@ -141,7 +142,7 @@ void enviarA(int numero)
     {
       Serial.println("Envio Confirmado a 1");
     }
-    else 
+    else
     {
       Serial.println("Error de envio de datos a 1");
     }
