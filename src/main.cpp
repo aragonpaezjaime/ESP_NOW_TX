@@ -138,38 +138,13 @@ void enviarA(int numero)
   if (numero==1)
   {
     esp_err_t result = esp_now_send(direccionMac1, (uint8_t *) &datosDeSalida, sizeof(datosDeSalida));
-    if (result == ESP_OK) 
-    {
-      Serial.println("Envio Confirmado a 1");
-    }
-    else
-    {
-      Serial.println("Error de envio de datos a 1");
-    }
-  }
-  if (numero==2)
+  }else  if (numero==2)
   {
     esp_err_t result = esp_now_send(direccionMac2, (uint8_t *) &datosDeSalida, sizeof(datosDeSalida));
-    if (result == ESP_OK) 
-    {
-      Serial.println("Envio Confirmado a 2");
-    }
-    else 
-    {
-      Serial.println("Error de envio de datos a 2");
-    }
   }
   if (numero==3)
   {
     esp_err_t result = esp_now_send(direccionMac3, (uint8_t *) &datosDeSalida, sizeof(datosDeSalida));
-    if (result == ESP_OK) 
-    {
-      Serial.println("Envio Confirmado a 3");
-    }
-    else 
-    {
-      Serial.println("Error de envio de datos a 3");
-    }
   }
   if (numero==4)
   {
